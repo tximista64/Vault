@@ -1,0 +1,17 @@
+services:
+  python-dev:
+    build: .
+    image: python-dev
+    container_name: python-dev
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    dns:
+      - 1.1.1.1
+    volumes:
+      - ./project:/home/pythondev/project
+      - ./htb.ovpn:/home/pythondev/htb.ovpn:ro
+    working_dir: /home/pythondev/project

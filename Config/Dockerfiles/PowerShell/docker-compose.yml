@@ -1,0 +1,10 @@
+services:
+  powershell-dev:
+    build: .
+    image: powershell-dev
+    container_name: powershell-dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./project:/home/psdev/project
+    working_dir: /home/psdev/project

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pseudo page d'accueil</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: monospace;
+      padding: 2rem;
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 2rem; }
+    h2 { font-size: 1.5rem; margin-bottom: 2rem; }
+
+    .search-box input {
+      background: #111;
+      color: #BB27F5;
+      border: 1px solid #BB27F5;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 500px;
+      font-size: 1rem;
+    }
+
+    .links {
+      margin: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .links a, .rss-feed a {
+      color: #BB27F5;
+      text-decoration: none;
+    }
+
+    .links a { width: calc(20% - 1rem); }
+
+    .rss-feed { margin-top: 2rem; }
+    .rss-feed li { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <h1>Ezina Ekinez Egina</h1>
+  <div class="search-box">
+    <form action="https://www.google.com/search" method="get">
+      <input type="text" name="q" placeholder="J'ai pas de bol...">
+    </form>
+  </div>
+
+  <div class="links">
+    <a href="https://account.hackthebox.com/dashboard" target="_blank">HTB</a>
+    <a href="https://github.com/tximista64" target="_blank">GitHub</a>
+    <a href="https://protonmail.com" target="_blank">Proton</a>
+	<a href="https://book.hacktricks.wiki/fr/generic-hacking/brute-force.html" target="_blank">Hacktriks</a>
+    <a href="https://rust-lang.org/fr/learn/" target="_blank">Rust</a>
+	<a href="https://www.thehacker.recipes/" target="_blank">The Hacker Recipes</a>
+    <a href="https://claude.ai" target="_blank">Claude</a>
+    <a href="https://nixos.org/" target=""_blank">Nixos</a>
+    <a href="https://discord.com/" target="_blank">Discord</a>
+    <a href="https://securitybreak.io/blog/" target="_blank">Security_Break</a>
+    <a href="https://unprotect.it/" target="_blank">Unprotected_Project</a>
+    <a href="https://socprime.com/blog/" target="_blank">SocPrime</a>
+    <a href="https://securelist.com/" target="_blank">Kaspersky</a>
+    <a href="https://thedfirreport.com/" target="_blank">DfirReport</a>
+    <a href="https://securityonline.info/" target="_blank">Security Online</a>
+    <a href="https://www.nextron-systems.com/blog/" target="_blank">Nextron</a>
+    <a href="https://www.zerodayinitiative.com/" target="_blank">ZerodayInitiative</a>
+    <a href="https://www.synacktiv.com/publications" target="_blank">Synactiv</a>
+    <a href="https://www.virustotal.com/gui/home/upload" target="_blank">VT</a>
+    <a href="https://any.run/" target="_blank">AnyRun</a>
+    <a href="https://sandbox.pikker.ee/dashboard/" target="_blank">Cuckoo</a>
+  </div>
+
+  <div class="rss-feed">
+    <h2>Rss</h2>
+  </div>
+
+  <script>
+    const feeds = [
+      { label: "🌐 News",            url: "https://www.lemonde.fr/rss/une.xml" },
+      { label: "🇫🇷 CERT-FR",       url: "https://www.cert.ssi.gouv.fr/feed/" },
+      { label: "🎧 No limit Secu",   url: "https://www.nolimitsecu.fr/feed" },
+      { label: "🎧 Purple Voice",    url: "https://feeds.acast.com/public/shows/purple-voice" },
+      { label: "🎧 Hackt Back",      url: "https://feed.ausha.co/KwvdxtwwlYdV" },
+      { label: "🎧 Darknet Diaries", url: "https://feeds.megaphone.fm/darknetdiaries" },
+      { label: "🎧 Hack&Speak",      url: "https://anchor.fm/s/435c0d58/podcast/rss" },
+      { label: "🧊 HTB Academy",     url: "https://roadmap.hackthebox.com/api/changelog/feed.rss?labels=academy" },
+      { label: "▶️ Laluka",          url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC6hdN69aeX49y7LvtKRUb8w" },
+      { label: "🎧 RadioCSIRT",      url: "https://www.radiocsirt.org/feed/" },
+    ];
+
+    const container = document.querySelector(".rss-feed");
+
+    function appendItems(ul, items) {
+      items.slice(0, 2).forEach(({ title, link }) => {
+        const a = document.createElement("a");
+        a.href = link;
+        a.target = "_blank";
+        a.textContent = title;
+        const li = document.createElement("li");
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+    }
+
+    function loadRss2json(url) {
+      return fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`)
+        .then(res => res.json())
+        .then(data => data.items.map(i => ({ title: i.title, link: i.link })));
+    }
+
+    function loadYoutube(url) {
+      return fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`)
+        .then(res => res.json())
+        .then(data => {
+          const xml = new DOMParser().parseFromString(data.contents, "text/xml");
+          return Array.from(xml.querySelectorAll("entry")).map(e => ({
+            title: e.querySelector("title").textContent,
+            link: e.querySelector("link").getAttribute("href"),
+          }));
+        });
+    }
+
+    feeds.forEach(feed => {
+      const section = document.createElement("section");
+      const h3 = document.createElement("h3");
+      h3.textContent = feed.label;
+      const ul = document.createElement("ul");
+      section.append(h3, ul);
+      container.appendChild(section);
+
+      const loader = feed.url.includes("youtube.com") ? loadYoutube : loadRss2json;
+      loader(feed.url)
+        .then(items => appendItems(ul, items))
+        .catch(() => {
+          const li = document.createElement("li");
+          li.textContent = "Erreur de chargement";
+          ul.appendChild(li);
+        });
+    });
+  </script>
+
+</body>
+</html>

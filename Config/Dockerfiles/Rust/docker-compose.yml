@@ -1,0 +1,10 @@
+services:
+  rust-dev:
+    build: .
+    image: rust-dev
+    container_name: rust-dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./project:/home/rustdev/project
+    working_dir: /home/rustdev/project

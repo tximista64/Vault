@@ -1,0 +1,155 @@
+/* Violet palette, matched to the Hyprland accent (active_border gradient
+   b875dc -> 8658a1) and the nvim/SDDM violet used across the rest of the
+   setup, instead of the previous Rose Pine palette. */
+@define-color base        #1a1522;
+@define-color surface     #241a35;
+@define-color overlay     #3d2a5c;
+@define-color muted       #7a6f95;
+@define-color subtle      #a99fc9;
+@define-color text        #ece6f7;
+@define-color love        #eb6f92;
+@define-color gold        #f6c177;
+@define-color rose        #ebbcba;
+@define-color pine        #31748f;
+@define-color foam        #9ccfd8;
+@define-color violet      #b875dc;
+@define-color violet_dark #8658a1;
+@define-color hl_low      #211a2e;
+@define-color hl_med      #4a2f70;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Hack", sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background: alpha(@base, 0.85);
+    color: @text;
+    border-radius: 14px;
+    border: 1px solid @hl_med;
+}
+
+#workspaces {
+    background: @surface;
+    border-radius: 10px;
+    margin: 5px 0 5px 8px;
+    padding: 2px 4px;
+}
+
+#workspaces button {
+    color: @subtle;
+    padding: 0 8px;
+    margin: 2px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+    color: @base;
+    background: linear-gradient(45deg, @violet, @violet_dark);
+    box-shadow:
+        0 0 8px alpha(@violet, 0.7),
+        0 0 16px alpha(@violet_dark, 0.45);
+}
+
+#workspaces button.empty {
+    color: @muted;
+}
+
+#workspaces button:hover {
+    background: @overlay;
+    color: @violet;
+    box-shadow: 0 0 6px alpha(@violet, 0.35);
+}
+
+#window {
+    color: @subtle;
+    padding: 0 12px;
+}
+
+#clock,
+#cpu,
+#memory,
+#backlight,
+#power-profiles-daemon,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#tray {
+    background: @surface;
+    color: @text;
+    padding: 0 12px;
+    margin: 5px 3px;
+    border-radius: 10px;
+}
+
+#clock {
+    color: @violet;
+    font-weight: bold;
+}
+
+#cpu {
+    color: @foam;
+}
+
+#memory {
+    color: @gold;
+}
+
+#backlight {
+    color: @rose;
+}
+
+#power-profiles-daemon {
+    color: @subtle;
+}
+
+#battery {
+    color: @love;
+}
+
+#battery.warning {
+    color: @gold;
+}
+
+#battery.critical {
+    color: @love;
+    background: @overlay;
+}
+
+#network {
+    color: @pine;
+}
+
+#bluetooth {
+    color: @foam;
+}
+
+#network.disconnected {
+    color: @love;
+}
+
+#pulseaudio {
+    color: @violet;
+}
+
+#pulseaudio.muted {
+    color: @muted;
+}
+
+#tray {
+    margin-right: 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background: @love;
+}
