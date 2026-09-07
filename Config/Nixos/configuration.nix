@@ -225,6 +225,7 @@ in
     cifs-utils
     podman
     podman-compose
+    virt-manager
     rustc
     cargo
     python3
