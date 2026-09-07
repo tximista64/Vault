@@ -224,6 +224,7 @@ in
     lynx
     cifs-utils
     podman
+    podman-compose
     rustc
     cargo
     python3

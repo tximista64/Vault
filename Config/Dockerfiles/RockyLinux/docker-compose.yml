@@ -1,0 +1,12 @@
+services:
+  # Rocky Linux "vierge" avec systemd actif en PID 1, pour s'entrainer
+  # comme sur une vraie machine (systemctl, services, etc.).
+  # Usage : podman-compose up -d
+  #         podman-compose exec rocky-systemd bash
+  rocky-systemd:
+    build: .
+    image: rocky-systemd
+    container_name: rocky-systemd
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
