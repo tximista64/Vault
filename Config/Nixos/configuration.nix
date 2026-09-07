@@ -193,8 +193,12 @@ in
   users.users."tximi" = {
     isNormalUser = true;
     description = "tximi";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
   };
+
+  # QEMU/KVM + libvirt for virt-manager
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -225,7 +229,6 @@ in
     cifs-utils
     podman
     podman-compose
-    virt-manager
     rustc
     cargo
     python3
