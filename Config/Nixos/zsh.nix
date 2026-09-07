@@ -31,9 +31,9 @@
     shellAliases = {
       docker = "podman";
       cat = "bat";
-      ls = "eza --icons";
-      ll = "eza --icons -l";
-      lt = "eza --icons --tree";
+      ls = "eza --icons=auto";
+      ll = "eza --icons=auto -l";
+      lt = "eza --icons=auto --tree";
     };
 
     # fonctions, PATH, banner
