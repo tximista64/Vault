@@ -30,6 +30,7 @@
     # alias
     shellAliases = {
       docker = "podman";
+      docker-compose = "podman-compose";
       cat = "bat";
       ls = "eza --icons=auto";
       ll = "eza --icons=auto -l";
