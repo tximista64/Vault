@@ -39,7 +39,7 @@ hl.on("hyprland.start", function ()
   -- hyprpaper's slow-on-this-VM startup and needed a whole retry-loop
   -- script to work around. swaybg is one command that IS the wallpaper,
   -- no daemon-then-configure step, so there's nothing to race.
-  hl.exec_cmd("swaybg -i /home/tximi/Images/Kaninchen.png -m fill")
+  hl.exec_cmd("swaybg -i /home/tximi/Progz/Vault/Config/Nixos/assets/Kaninchen.png -m fill")
 end)
 
 
