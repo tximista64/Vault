@@ -46,6 +46,22 @@ let
     cp -r ${pkgs.catppuccin-sddm}/share/sddm/themes/catppuccin-mocha-mauve $out/share/sddm/themes/
     chmod -R u+w $out/share/sddm/themes/catppuccin-mocha-mauve
     cp ${sddmNixosBackground} $out/share/sddm/themes/catppuccin-mocha-mauve/backgrounds/wall.png
+
+    # Enlarge just the username/password fields and shift the login box up
+    # ~3cm (this laptop panel is 1920x1080 over a 310x170mm physical area,
+    # so 3cm ~= 190px) -- login button, session picker and clock keep the
+    # theme's normal size.
+    THEME=$out/share/sddm/themes/catppuccin-mocha-mauve
+    sed -i 's/pointSize: config.FontSize/pointSize: config.FontSize * 1.8/' \
+      "$THEME/Components/UserField.qml" "$THEME/Components/PasswordField.qml"
+    sed -i '/id: userField/,+2{s/height: inputHeight/height: inputHeight * 1.35/}' \
+      "$THEME/Components/LoginPanel.qml"
+    sed -i '/id: passwordField/,+2{s/height: inputHeight/height: inputHeight * 1.35/}' \
+      "$THEME/Components/LoginPanel.qml"
+    sed -i '/width: inputWidth/,/horizontalCenter: parent.horizontalCenter/{
+      /horizontalCenter: parent.horizontalCenter/a\
+      verticalCenterOffset: -190
+    }' "$THEME/Components/LoginPanel.qml"
   '';
 in
 {
