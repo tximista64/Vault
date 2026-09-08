@@ -29,6 +29,7 @@ local menu        = "wofi --show drun"
 
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 hl.on("hyprland.start", function ()
+  hl.exec_cmd("cvlc --intf dummy --play-and-exit --quiet /home/tximi/Progz/Vault/Config/Nixos/assets/opening.mp3")
   hl.exec_cmd("waybar")
   hl.exec_cmd("mako")
   hl.exec_cmd("hypridle")
@@ -252,10 +253,10 @@ hl.device({
 local mainMod = "SUPER" -- bare metal now, no VM host to conflict with
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("cvlc --intf dummy --play-and-exit --quiet /home/tximi/Progz/Vault/Config/Nixos/assets/Terminal.mp3 & " .. terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("cvlc --intf dummy --play-and-exit --quiet /home/tximi/Progz/Vault/Config/Nixos/assets/ending.mp3; command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
@@ -297,7 +298,7 @@ hl.bind("Print", hl.dsp.exec_cmd(
 ))
 
 -- Lock the session (needs hyprlock)
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("cvlc --intf dummy --play-and-exit --quiet /home/tximi/Progz/Vault/Config/Nixos/assets/ending.mp3; hyprlock"))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
