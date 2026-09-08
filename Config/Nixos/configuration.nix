@@ -78,6 +78,10 @@ in
   boot.loader.systemd-boot.configurationLimit = 5;
   # for latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Needed at boot for libvirt's "default" NAT network (virbr0) -- without
+  # it, virsh net-start fails with "Operation not permitted" creating the
+  # bridge interface.
+  boot.kernelModules = [ "bridge" ];
   networking.hostName = "zawarud0"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -155,12 +159,10 @@ in
   # not just 64-bit -- without this, GLX/Vulkan init fails inside the sandbox.
   hardware.graphics.enable32Bit = true;
 
-  # Was installed imperatively before; declaring it properly here instead
   # (desktop integration, remote-play firewall rules, steam-run in PATH).
   programs.steam.enable = true;
 
-  # Real laptop, real battery: nothing was managing CPU/thermal power states
-  # (irrelevant on the VM). Lightweight, zero-config compared to TLP.
+  # Real laptop, real battery: CPU/thermal power states
   services.power-profiles-daemon.enable = true;
 
   # Bluetooth (headset pairing via blueman, launched from Waybar's tray/module).
