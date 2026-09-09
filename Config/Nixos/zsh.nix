@@ -42,6 +42,14 @@
     interactiveShellInit = ''
       export PATH="$HOME/.local/bin:$PATH"
 
+      # Symlink arrow (eza "punctuation") and autosuggestion text were both
+      # landing on the theme's near-black grey (color8 #353146, close to the
+      # #1f1c27 background) -> low contrast. Recolor both to a teal, the one
+      # hue missing from the Kitty palette, so it's readable without echoing
+      # the violet foreground/accent (#b6a0ff / #b875dc).
+      export EZA_COLORS="xx=38;5;43"
+      export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3ecfc4"
+
       # zoxide (replaces oh-my-zsh's "z") and fzf (ctrl+t/alt+c)
       eval "$(zoxide init zsh)"
       eval "$(fzf --zsh)"
