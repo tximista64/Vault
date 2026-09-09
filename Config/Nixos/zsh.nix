@@ -42,13 +42,19 @@
     interactiveShellInit = ''
       export PATH="$HOME/.local/bin:$PATH"
 
-      # Symlink arrow (eza "punctuation") and autosuggestion text were both
-      # landing on the theme's near-black grey (color8 #353146, close to the
-      # #1f1c27 background) -> low contrast. Recolor both to a teal, the one
-      # hue missing from the Kitty palette, so it's readable without echoing
-      # the violet foreground/accent (#b6a0ff / #b875dc).
-      export EZA_COLORS="xx=38;5;43"
-      export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3ecfc4"
+      # Symlink arrow (eza "punctuation") was landing on the theme's near-
+      # black grey (color8 #353146, close to the #1f1c27 background) -> low
+      # contrast. Recolored to a balanced cyan (equal green/blue) so it
+      # doesn't echo the violet foreground/accent (#b6a0ff / #b875dc) *and*
+      # stays clear of zsh-syntax-highlighting's built-in green for
+      # recognized commands (fg=green, i.e. color2 #2dcc72).
+      export EZA_COLORS="xx=38;5;80"
+
+      # Autosuggestion: same grey-on-near-black problem, but here the violet
+      # family is wanted back -- just dimmed down from the bright foreground
+      # (#b6a0ff) / cursor (#b875dc) so a suggestion still reads as distinct
+      # from text you've actually typed.
+      export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#8f7fc4"
 
       # zoxide (replaces oh-my-zsh's "z") and fzf (ctrl+t/alt+c)
       eval "$(zoxide init zsh)"
