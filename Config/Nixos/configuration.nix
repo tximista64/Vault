@@ -247,7 +247,7 @@ in
     cargo
     python3
     go
-    claude-code
+    codex
     vlc
     imagemagick
     eza
