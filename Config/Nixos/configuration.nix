@@ -263,7 +263,6 @@ in
     mdcat
     foliate
     obsidian
-    fastfetch
 
   # Toolkit
 

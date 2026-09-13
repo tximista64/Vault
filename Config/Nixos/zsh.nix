@@ -63,7 +63,7 @@
       # banner
       if [[ "$TERM" == "xterm-kitty" ]]; then
         cols=$(tput cols)
-        kitty +kitten icat --align center --place "''${cols}x5@0x0" "$HOME/Images/banner.png"
+        kitty +kitten icat --align center --place "''${cols}x5@0x0" "/home/tximi/Progz/Vault/Config/Nixos/assets/banner.png"
         printf '\n%.0s' {1..6}
       fi
     '';
