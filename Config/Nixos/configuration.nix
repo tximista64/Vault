@@ -158,6 +158,13 @@ in
   # Run precompiled Linux binaries with nix-ld.
   programs.nix-ld.enable = true;
 
+  # Libraries for nix-ld
+  programs.nix-ld.libraries = with pkgs; [
+    fontconfig
+    libX11
+    wayland
+  ];
+
   # Real laptop, real battery: CPU/thermal power states
   services.power-profiles-daemon.enable = true;
 
@@ -259,7 +266,6 @@ in
     luajitPackages.magick
     dotnetCorePackages.sdk_9_0
     godot
-    discord
     mdcat
     foliate
     obsidian
