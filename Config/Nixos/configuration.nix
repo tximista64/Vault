@@ -263,7 +263,7 @@ in
     mdcat
     foliate
     obsidian
-
+    plocate
   # Toolkit
 
     file
