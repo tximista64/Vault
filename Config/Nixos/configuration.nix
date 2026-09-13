@@ -263,7 +263,8 @@ in
     mdcat
     foliate
     obsidian
-    plocate
+    transmission_4
+
   # Toolkit
 
     file
@@ -321,6 +322,10 @@ in
   # };
 
   # List services that you want to enable:
+  services.locate = {
+    enable = true;
+    package = pkgs.plocate;
+    };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
