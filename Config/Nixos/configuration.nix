@@ -155,15 +155,8 @@ in
   # not just 64-bit -- without this, GLX/Vulkan init fails inside the sandbox.
   hardware.graphics.enable32Bit = true;
 
-  # Run precompiled Linux binaries with nix-ld.
-  programs.nix-ld.enable = true;
-
-  # Libraries for nix-ld
-  programs.nix-ld.libraries = with pkgs; [
-    fontconfig
-    libX11
-    wayland
-  ];
+  # Steam
+  programs.steam.enable = true;
 
   # Real laptop, real battery: CPU/thermal power states
   services.power-profiles-daemon.enable = true;
