@@ -64,9 +64,7 @@ in
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "eu_ES.UTF-8";
-  environment.sessionVariables.LANGUAGE = "eu:fr";
-
+  i18n.defaultLocale = "fr_FR.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "fr_FR.UTF-8";
     LC_IDENTIFICATION = "fr_FR.UTF-8";
