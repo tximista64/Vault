@@ -1,13 +1,8 @@
 { config, lib, pkgs, ... }:
-#fetching gef
-let
-  gefpy = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/hugsy/gef/main/gef.py";
-    sha256 = "sha256-ur4QuZkQ9ERdYocCGuaRAXXBoOanJGS2LOJhB9xnC7c=";
-  };
 
   # SBECmd (ShellBags Explorer, CLI) - Eric Zimmerman's tools
   # net9 build is framework-dependent (SBECmd.dll), so it runs cross-platform via dotnet
+let
   sbecmdZip = pkgs.fetchurl {
     url = "https://download.ericzimmermanstools.com/net9/SBECmd.zip";
     sha256 = "16zbnz0qq5m148r3s06hv63x6ilyk5gz41m1988nibxs6a5bkvc8";
@@ -81,8 +76,6 @@ in
   programs.hyprland.enable = true;
 
   # The hyprland package ships two session .desktop files (plain + uwsm-managed).
-  # The uwsm one caused blackscreens at the SDDM greeter on real hardware, and with
-  # no visible cursor there we couldn't tell them apart to pick the working one.
   # Force only the plain session to be listed.
   services.displayManager.sessionPackages = lib.mkForce [
     (pkgs.runCommand "hyprland-session-only" {
@@ -95,7 +88,6 @@ in
 
   # Enable proper hardware acceleration.
   hardware.graphics.enable = true;
-  # Steam's pressure-vessel sandbox needs matching 32-bit Mesa/Vulkan libs,
   # not just 64-bit -- without this, GLX/Vulkan init fails inside the sandbox.
   hardware.graphics.enable32Bit = true;
 
@@ -245,16 +237,6 @@ in
     playerctl
 
 ];
-
-  # gef
-  system.activationScripts.gefInstall.text = ''
-    USER_HOME="/home/tximi"
-    LINE="source ${gefpy}"
-    if ! grep -qxF "$LINE" "$USER_HOME/.gdbinit" 2>/dev/null; then
-      echo "$LINE" >> "$USER_HOME/.gdbinit"
-      chown tximi:users "$USER_HOME/.gdbinit"
-    fi
-  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
