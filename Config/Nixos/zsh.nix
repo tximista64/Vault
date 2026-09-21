@@ -35,6 +35,7 @@
       ls = "eza --icons=auto";
       ll = "eza --icons=auto -l";
       lt = "eza --icons=auto --tree";
+      grep = "grep --color=auto";
     };
 
     # fonctions, PATH, banner
