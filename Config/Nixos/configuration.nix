@@ -1,39 +1,5 @@
 { config, lib, pkgs, ... }:
 
-  # SBECmd (ShellBags Explorer, CLI) - Eric Zimmerman's tools
-  # net9 build is framework-dependent (SBECmd.dll), so it runs cross-platform via dotnet
-let
-  sbecmdZip = pkgs.fetchurl {
-    url = "https://download.ericzimmermanstools.com/net9/SBECmd.zip";
-    sha256 = "16zbnz0qq5m148r3s06hv63x6ilyk5gz41m1988nibxs6a5bkvc8";
-  };
-
-  sbecmd = pkgs.stdenv.mkDerivation {
-    pname = "sbecmd";
-    version = "2026.5.0";
-    src = sbecmdZip;
-
-    nativeBuildInputs = [ pkgs.unzip pkgs.makeWrapper ];
-    dontUnpack = true;
-
-    installPhase = ''
-      runHook preInstall
-      mkdir -p $out/lib/sbecmd
-      unzip -q $src -d $out/lib/sbecmd
-      makeWrapper ${pkgs.dotnetCorePackages.runtime_9_0}/bin/dotnet $out/bin/sbecmd \
-        --add-flags "$out/lib/sbecmd/SBECmd.dll"
-      runHook postInstall
-    '';
-
-    meta = {
-      description = "ShellBags Explorer, command line edition (Eric Zimmerman's tools)";
-      homepage = "https://ericzimmerman.github.io";
-      platforms = pkgs.lib.platforms.linux;
-    };
-  };
-
-
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -204,21 +170,6 @@ in
 
     file
     util-linux
-    volatility3
-    exiftool
-    chainsaw
-    foremost
-    binwalk
-    ghidra
-    hashcat
-    seclists
-    ffuf
-    nmap
-    netexec
-    sqlmap
-    caido-desktop
-    git-dumper
-    sbecmd
     visidata
 
   # Hyprland
