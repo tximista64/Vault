@@ -30,7 +30,7 @@ sudo find /var/log -type f -exec truncate -s 0 {} \;
 echo "System logs cleared."
 echo "=== Nixos garbage collector ==="
 sleep 2s
-nix-collect-garbage -d
+sudo nix-collect-garbage -d
 CLEANUP
 
     echo "=== Clearing shell history (zsh + atuin) ==="
