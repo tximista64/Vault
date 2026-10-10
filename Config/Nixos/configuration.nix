@@ -41,7 +41,6 @@
   # Hyprland
   programs.hyprland.enable = true;
 
-  # The hyprland package ships two session .desktop files (plain + uwsm-managed).
   # Force only the plain session to be listed.
   services.displayManager.sessionPackages = lib.mkForce [
     (pkgs.runCommand "hyprland-session-only" {
@@ -124,8 +123,21 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
+  
+  # Enable Google DNS 
 
-  # Survival kit
+  networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "none";
+
+  networking.nameservers = [
+   "8.8.8.8"
+   "8.8.4.4"
+ ];
+
+  networking.useDHCP = false;
+  networking.dhcpcd.enable = false;
+  
+  # Survival 
 
     git
     gh
