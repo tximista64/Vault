@@ -121,12 +121,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-  
   # Enable Google DNS 
 
-  networking.networkmanager.enable = true;
   networking.networkmanager.dns = "none";
 
   networking.nameservers = [
@@ -136,6 +132,9 @@
 
   networking.useDHCP = false;
   networking.dhcpcd.enable = false;
+
+  # List packages installed in system profile.
+  environment.systemPackages = with pkgs; [
   
   # Survival 
 
@@ -176,6 +175,7 @@
     mdcat
     foliate
     obsidian
+    libreoffice
     transmission_4
 
   # Toolkit
