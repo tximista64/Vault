@@ -36,4 +36,15 @@ success "Flake updated"
 header "Rebuilding"
 sudo nixos-rebuild switch --flake "${FLAKE}#${HOST}" --log-format bar-with-logs
 
+if [[ "$TERM" == "xterm-kitty" ]]; then
+    cols=$(tput cols)
+    rows=$(tput lines)
+    clear
+    kitty +kitten icat --align center \
+        --place "${cols}x${rows}@0x0" \
+        "$HOME/Progz/Vault/Config/Nixos/assets/vincent.gif"
+fi
+
+sleep 3s
+
 success "NixOS upgraded successfully"

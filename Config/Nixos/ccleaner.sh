@@ -52,14 +52,15 @@ CLEANUP
         print -ru2 -- "=== Finished with errors ==="
     fi
     echo "=== [!] WTF ==="
-    
+    sleep 3s
+
     if [[ "$TERM" == "xterm-kitty" ]]; then
         local cols=$(tput cols)
+        local rows=$(tput lines)
         clear
         kitty +kitten icat --align center \
-            --place "${cols}x8@0x0" \
+            --place "${cols}x${rows}@0x0" \
             "$HOME/Progz/Vault/Config/Nixos/assets/leslie.gif"
-        printf '\n%.0s' {1..9}
     fi
 
     sleep 3s
