@@ -36,7 +36,7 @@
       ll = "eza --icons=auto -l";
       lt = "eza --icons=auto --tree";
       grep = "grep --color=auto";
-      solong= "sudo source ~/Progz/Vault/Config/Nixos/ccleaner.sh && sudo shutdown -h now";
+      solong= "source ~/Progz/Vault/Config/Nixos/ccleaner.sh && sudo shutdown -h now";
     };
 
     # fonctions, PATH, banner
