@@ -36,7 +36,7 @@
       ll = "eza --icons=auto -l";
       lt = "eza --icons=auto --tree";
       grep = "grep --color=auto";
-      solong= "source ~/Progz/Vault/Config/Nixos/ccleaner.sh && sudo shutdown -h now";
+      solong= "source ~/Progz/Vault/Config/Nixos/ccleaner.sh";
     };
 
     # fonctions, PATH, banner
@@ -65,8 +65,8 @@
       # banner
       if [[ "$TERM" == "xterm-kitty" ]]; then
         cols=$(tput cols)
-        kitty +kitten icat --align center --place "''${cols}x5@0x0" "/home/tximi/Progz/Vault/Config/Nixos/assets/banner.png"
-        printf '\n%.0s' {1..6}
+        kitty +kitten icat --align center --place "''${cols}x8@0x0" "/home/tximi/Progz/Vault/Config/Nixos/assets/banner.png"
+        printf '\n%.0s' {1..9}
       fi
     '';
   };
