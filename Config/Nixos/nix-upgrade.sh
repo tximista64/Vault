@@ -47,4 +47,8 @@ fi
 
 sleep 3s
 
+if [[ "$TERM" == "xterm-kitty" ]]; then
+    kitty +kitten icat --clear
+fi
+
 success "NixOS upgraded successfully"
