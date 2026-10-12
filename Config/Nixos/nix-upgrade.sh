@@ -40,7 +40,7 @@ if [[ "$TERM" == "xterm-kitty" ]]; then
     cols=$(tput cols)
     rows=$(tput lines)
     clear
-    kitty +kitten icat --align center \
+    kitty +kitten icat --align center --scale-up \
         --place "${cols}x${rows}@0x0" \
         "$HOME/Progz/Vault/Config/Nixos/assets/vincent.gif"
 fi
