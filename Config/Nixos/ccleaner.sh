@@ -58,12 +58,12 @@ CLEANUP
         local cols=$(tput cols)
         local rows=$(tput lines)
         clear
-        kitty +kitten icat --align center \
+        kitty +kitten icat --align center --scale-up \
             --place "${cols}x${rows}@0x0" \
             "$HOME/Progz/Vault/Config/Nixos/assets/leslie.gif"
     fi
 
-    sleep 3s
+    sleep 7s
     shutdown -h now
 
     return "$cleanup_status"

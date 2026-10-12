@@ -45,7 +45,7 @@ if [[ "$TERM" == "xterm-kitty" ]]; then
         "$HOME/Progz/Vault/Config/Nixos/assets/vincent.gif"
 fi
 
-sleep 3s
+sleep 11s
 
 if [[ "$TERM" == "xterm-kitty" ]]; then
     kitty +kitten icat --clear
