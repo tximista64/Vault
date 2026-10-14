@@ -147,12 +147,6 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
-
-  # Kokoro TTS - Synthèse vocale neuronale
-    uv
-    espeak-ng
-    ffmpeg
-    libsndfile
   
   # Survival 
 
@@ -220,17 +214,6 @@
     playerctl
 
 ];
-
-  # Compatibilité des bibliothèques Python précompilées
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc.lib
-      zlib
-      libsndfile
-      espeak-ng
-    ];
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

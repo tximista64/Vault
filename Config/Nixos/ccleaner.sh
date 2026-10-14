@@ -63,7 +63,7 @@ CLEANUP
             "$HOME/Progz/Vault/Config/Nixos/assets/leslie.gif"
     fi
 
-    sleep 2s
+    sleep 1s
     shutdown -h now
 
     return "$cleanup_status"
