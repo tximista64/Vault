@@ -85,6 +85,18 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Scan with the Epson XP-6105 over Wi-Fi.
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.sane-airscan ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -175,6 +187,7 @@
     mdcat
     foliate
     evince
+    simple-scan
     obsidian
     libreoffice
     transmission_4
