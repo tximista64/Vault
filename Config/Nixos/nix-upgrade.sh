@@ -8,6 +8,7 @@ HOST="zawarud0"
 GREEN='\033[1;32m'
 RED='\033[1;31m'
 CYAN='\033[1;36m'
+PURPLE='\033[1;38;2;167;139;250m'
 NC='\033[0m'
 
 header() {
@@ -52,3 +53,7 @@ if [[ "$TERM" == "xterm-kitty" ]]; then
 fi
 
 success "NixOS upgraded successfully"
+
+printf "\n${PURPLE}===[!!] %s ===${NC}\n" 'Dans le doute reboute'
+sleep 5s
+sudo reboot

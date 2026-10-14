@@ -174,6 +174,7 @@
     godot
     mdcat
     foliate
+    okular
     obsidian
     libreoffice
     transmission_4
