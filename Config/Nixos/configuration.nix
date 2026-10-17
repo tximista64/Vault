@@ -157,6 +157,7 @@
     kitty
     btop
     tree-sitter
+    tree
     zip
     unzip
     gcc
